@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Data Structures</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<nav class="navbar">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="algorithms.html">Algorithms</a></li>
+        <li><a href="pseudocode.html">Pseudocode</a></li>
+        <li><a href="datastructures.html">Data Structures</a></li>
+    </ul>
+</nav>
+
+<div class="section">
+    <h2>Data Structures</h2>
+
+    <h3>1. Array</h3>
+    <pre>
+arr = [10, 20, 30, 40]
+arr.append(50)
+print(arr)
+    </pre>
+
+    <h3>2. Stack – Infix, Postfix, Prefix</h3>
+    <h4>Infix to Postfix</h4>
+    <pre>
+def infix_to_postfix(expr):
+    prec = {'+':1,'-':1,'*':2,'/':2}
+    stack = []
+    output = ""
+    for ch in expr:
+        if ch.isalnum():
+            output += ch
+        elif ch in prec:
+            while stack and prec.get(stack[-1],0) >= prec[ch]:
+                output += stack.pop()
+            stack.append(ch)
+    while stack:
+        output += stack.pop()
+    return output
+print(infix_to_postfix("A+B*C"))
+    </pre>
+
+    <h4>Postfix Evaluation</h4>
+    <pre>
+def postfix_eval(expr):
+    stack = []
+    for ch in expr:
+        if ch.isdigit():
+            stack.append(int(ch))
+        else:
+            b = stack.pop()
+            a = stack.pop()
+            if ch == '+': stack.append(a+b)
+            if ch == '-': stack.append(a-b)
+            if ch == '*': stack.append(a*b)
+            if ch == '/': stack.append(a/b)
+    return stack[0]
+print(postfix_eval("23+5*"))
+    </pre>
+
+    <h4>Prefix Evaluation</h4>
+    <pre>
+def prefix_eval(expr):
+    stack = []
+    for ch in reversed(expr):
+        if ch.isdigit():
+            stack.append(int(ch))
+        else:
+            a = stack.pop()
+            b = stack.pop()
+            if ch == '+': stack.append(a+b)
+            if ch == '-': stack.append(a-b)
+            if ch == '*': stack.append(a*b)
+            if ch == '/': stack.append(a/b)
+    return stack[0]
+print(prefix_eval("*+235"))
+    </pre>
+
+    <h3>3. Queue</h3>
+    <pre>
+from collections import deque
+q = deque()
+q.append(10)
+q.append(20)
+print(q.popleft())
+    </pre>
+
+    <h3>4. Trees – Inorder, Preorder, Postorder</h3>
+    <pre>
+class Node:
+    def __init__(self, v):
+        self.val = v
+        self.left = None
+        self.right = None
+
+def inorder(root):
+    if root:
+        inorder(root.left)
+        print(root.val, end=" ")
+        inorder(root.right)
+
+# Example tree
+root = Node(1)
+root.left = Node(2)
+root.right = Node(3)
+inorder(root)
+    </pre>
+</div>
+
+<footer>
+    <div class="req">For CC104 Final Requirement</div>
+</footer>
+
+</body>
+</html>

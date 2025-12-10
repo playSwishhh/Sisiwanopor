@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Pseudocodes</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+
+<nav class="navbar">
+    <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="algorithms.html">Algorithms</a></li>
+        <li><a href="pseudocode.html">Pseudocode</a></li>
+        <li><a href="datastructures.html">Data Structures</a></li>
+     </ul>
+</nav>
+
+<div class="section">
+    <h2>Pseudocodes</h2>
+    <pre>
+1. Linear Search
+FOR i = 0 TO n-1
+    IF arr[i] == key THEN RETURN i
+RETURN -1
+
+2. Binary Search
+low ← 0
+high ← n-1
+WHILE low ≤ high
+    mid ← (low + high) / 2
+    IF arr[mid] == key THEN RETURN mid
+    ELSE IF key < arr[mid] THEN high = mid-1
+    ELSE low = mid+1
+RETURN -1
+
+3. Bubble Sort
+REPEAT
+    swapped ← false
+    FOR i = 0 TO n-2
+        IF arr[i] > arr[i+1] THEN
+            SWAP(arr[i], arr[i+1])
+            swapped ← true
+UNTIL swapped = false
+
+4. Selection Sort
+FOR i = 0 TO n-1
+    minIndex = i
+    FOR j = i+1 TO n-1
+        IF arr[j] < arr[minIndex] THEN minIndex = j
+    SWAP(arr[i], arr[minIndex])
+
+5. Insertion Sort
+FOR i = 1 TO n-1
+    key = arr[i]
+    j = i - 1
+    WHILE j ≥ 0 AND arr[j] > key
+        arr[j+1] = arr[j]
+        j = j - 1
+    arr[j+1] = key
+
+6. Merge Sort
+FUNCTION MergeSort(arr)
+    IF length(arr) ≤ 1 THEN RETURN arr
+    mid = length(arr)/2
+    left = MergeSort(left half of arr)
+    right = MergeSort(right half of arr)
+    RETURN Merge(left, right)
+END FUNCTION
+
+7. Quick Sort
+FUNCTION QuickSort(arr, low, high)
+    IF low < high THEN
+        pivot = Partition(arr, low, high)
+        QuickSort(arr, low, pivot-1)
+        QuickSort(arr, pivot+1, high)
+END FUNCTION
+
+8. Breadth First Search (BFS)
+CREATE queue
+ENQUEUE(start)
+WHILE queue NOT empty
+    node = DEQUEUE()
+    FOR each neighbor of node
+        IF neighbor NOT visited THEN
+            mark neighbor visited
+            ENQUEUE(neighbor)
+
+9. Depth First Search (DFS)
+FUNCTION DFS(node)
+    mark node visited
+    FOR each neighbor of node
+        IF neighbor NOT visited THEN DFS(neighbor)
+END FUNCTION
+
+10. Dijkstra's Algorithm
+INITIALIZE distance[source] = 0
+INITIALIZE all other distances = ∞
+CREATE set of unvisited nodes
+WHILE unvisited nodes NOT empty
+    node = unvisited node with smallest distance
+    FOR each neighbor of node
+        alt = distance[node] + edge(node, neighbor)
+        IF alt < distance[neighbor] THEN distance[neighbor] = alt
+    mark node as visited
+END WHILE
+    </pre>
+</div>
+
+<footer>
+    <div>For CC104 Final Requirement</div>
+</footer>
+
+</body>
+</html>
